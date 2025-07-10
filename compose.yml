@@ -1,0 +1,80 @@
+services:
+
+  pgdb:
+    container_name: myai_pgdb
+    hostname: pgdb
+    image: ankane/pgvector:latest
+    ports:
+      - "5432:5432"
+    env_file:
+      - ../.env
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    networks:
+      - myai_network
+
+#   adminer:
+#     image: adminer:latest
+#     container_name: myai_adminer
+#     hostname: adminer
+#     ports:
+#       - "8080:8080"
+#     depends_on:
+#       - pgdb
+#     networks:
+#       - myai_network
+
+#   open-webui:
+#     image: ghcr.io/open-webui/open-webui:main
+#     container_name: myai_open_webui
+#     restart: unless-stopped
+#     env_file:
+#       - .env
+#     volumes:
+#       - open_webui_data:/app/backend/data
+#     ports:
+#       - "3000:8080"
+#     depends_on:
+#         - pgdb
+#     networks:
+#       - myai_network
+
+#   ollama:
+#     image: ollama/ollama:latest
+#     container_name: ollama
+#     hostname: ollama
+#     restart: unless-stopped
+#     env_file:
+#       - .env
+#     volumes:
+#       - ollama_data:/root/.ollama
+#     ports:
+#       - "11434:11434"
+#     networks:
+#       - myai_network
+
+#   litellm:
+#     image: ghcr.io/berriai/litellm:main-latest
+#     container_name: litellm
+#     hostname: litellm
+#     restart: unless-stopped
+#     env_file:
+#       - .env
+#     volumes:
+#       - ./litellm_config.yaml:/app/config.yaml:ro
+#     ports:
+#       - "4000:4000"
+#     depends_on:
+#         - pgdb
+#     command: ["--config", "/app/config.yaml", "--port", "4000", "--num_workers", "1"]
+#     networks:
+#       - myai_network
+
+volumes:
+  postgres_data:
+  open_webui_data:
+  ollama_data:
+
+networks:
+    myai_network:
+        driver: bridge
