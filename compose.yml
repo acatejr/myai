@@ -7,22 +7,24 @@ services:
     ports:
       - "5432:5432"
     env_file:
-      - ../.env
+      - .env
     volumes:
       - postgres_data:/var/lib/postgresql/data
     networks:
       - myai_network
 
-#   adminer:
-#     image: adminer:latest
-#     container_name: myai_adminer
-#     hostname: adminer
-#     ports:
-#       - "8080:8080"
-#     depends_on:
-#       - pgdb
-#     networks:
-#       - myai_network
+  adminer:
+    image: adminer:latest
+    container_name: myai_adminer
+    hostname: adminer
+    env_file:
+      - .env
+    ports:
+      - "8080:8080"
+    depends_on:
+      - pgdb
+    networks:
+      - myai_network
 
 #   open-webui:
 #     image: ghcr.io/open-webui/open-webui:main
