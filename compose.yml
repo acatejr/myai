@@ -41,19 +41,19 @@ services:
 #     networks:
 #       - myai_network
 
-#   ollama:
-#     image: ollama/ollama:latest
-#     container_name: ollama
-#     hostname: ollama
-#     restart: unless-stopped
-#     env_file:
-#       - .env
-#     volumes:
-#       - ollama_data:/root/.ollama
-#     ports:
-#       - "11434:11434"
-#     networks:
-#       - myai_network
+  ollama:
+    image: ollama/ollama:latest
+    container_name: ollama
+    hostname: ollama
+    restart: unless-stopped
+    env_file:
+      - .env
+    volumes:
+      - ollama_data:/root/.ollama
+    ports:
+      - "11434:11434"
+    networks:
+      - myai_network
 
 #   litellm:
 #     image: ghcr.io/berriai/litellm:main-latest
