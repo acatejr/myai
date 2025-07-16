@@ -4,10 +4,10 @@ model_list:
       model: claude-opus-4-20250514 ### MODEL NAME sent to `litellm.completion()` ###
       api_key: "os.environ/ANTHROPIC_API_KEY" # does os.getenv("AZURE_API_KEY_EU")
 
-    # - model_name: ollama/llama3.1:latest # The name you use in litellm.completion
-    #   litellm_params:
-    #     model: ollama/llama3.1:latest # The actual model identifier for the provider
-    #     api_base: "http://ollama:11434" # Default, change if needed
+#   - model_name: ollama/codellama # The name you use in litellm.completion
+#     litellm_params:
+#       model: ollama/codellama:latest # The actual model identifier for the provider
+#       api_base: "http://ollama:11434" # Default, change if needed
 
 general_settings:
   master_key: os.environ/LITELLM_MASTER_KEY
