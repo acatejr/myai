@@ -5,7 +5,8 @@ services:
     hostname: pgdb
     image: ankane/pgvector:latest
     ports:
-      - "5432:5432"
+      # - "5432:5432"
+        - 5432
     env_file:
       - .env
     volumes:
